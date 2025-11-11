@@ -5,5 +5,5 @@ export default createProxyMiddleware({
       changeOrigin: true,
       pathRewrite: {
         '^/api': '',
-      }
+      },prependPath: true,
     });
