@@ -1,9 +1,3 @@
 {
-  "$schema": "https://openapi.vercel.sh/vercel.json",
-  "redirects": [
-    {
-      "source": "/api/:path*",
-      "destination": "https://solved.ac/api/v3/:path*"
-    }
-  ]
+  "$schema": "https://openapi.vercel.sh/vercel.json"
 }
