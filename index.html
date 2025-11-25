@@ -1,7 +1,24 @@
-<html>
-  <body>
-    <p>
-      Hello, first HTML on P(rogue)ramming
-    </p>
-  </body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Web Page</title>
+  <script src="game.js"></script>
+  <style>
+    #game-div{border:3px solid red;}
+  </style>
+</head>
+<body>
+  <div>
+  <label for="handle">Handle (not implemented yet)</label>
+  <input type="text" id="handle"></input>
+  <label for="gridsize">Grid Size</label>
+  <input type="number" id="gridsize"></input><br/>
+  <button id="gamestart">Game Start</button>
+  </div>
+  <div id="game-div">
+  <table id="game-table">
+  </table>
+  </div>
+</body>
 </html>
