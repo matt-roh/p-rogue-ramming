@@ -22,8 +22,11 @@ game_start=function(size)
       newTd.style.borderBottom="3px solid #000";
       newTd.style.borderLeft="3px solid #000";
       newTd.style.borderRight="3px solid #000";
-      newTd.style.width="75px";
-      newTd.style.height="75px";
+      
+      vport=document.documentElement.clientHeight-150;
+      si=Math.min((vport/size)>>0,75);
+      newTd.style.width=si+"px";
+      newTd.style.height=si+"px";
       newTd.style.textAlign="center";
       newTd.style.visibility="hidden";
 
