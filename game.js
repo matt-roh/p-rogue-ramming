@@ -1,6 +1,4 @@
-const SZ=6;
-
-game_start=function(size)
+game_start=function(size,handle)
 {
   let gameTable=document.getElementById("game-table");
   gameTable.querySelectorAll('*').forEach(child => child.remove());
@@ -206,9 +204,8 @@ game_start=function(size)
 
 window.onload=function()
 {
-  gameStart=document.getElementById("gamestart");
-  gameStart.addEventListener("click",(event)=>{
-    sz=document.getElementById("gridsize").value;
-    game_start(sz);
-  });
+  const urlParams=new URLSearchParams(window.location.search);
+  let sz=urlParams.get('size');
+  let handle="";
+  game_start(sz,handle);
 };
