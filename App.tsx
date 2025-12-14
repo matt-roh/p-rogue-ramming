@@ -11,7 +11,8 @@ import { generateDungeon } from './services/dungeon';
 import { fetchUserTier, checkProblemSolved, generateProblem } from './services/api';
 import { GameMap } from './components/GameMap';
 import { RoomView } from './components/RoomView';
-import { Activity, Heart, Trophy, Skull, BarChart2 } from 'lucide-react';
+import { GameGuide } from './components/GameGuide';
+import { Activity, Heart, Trophy, Skull, BarChart2, BookOpen } from 'lucide-react';
 import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Tooltip } from 'recharts';
 
 const App: React.FC = () => {
@@ -30,6 +31,7 @@ const App: React.FC = () => {
   const [dungeon, setDungeon] = useState<Room[][]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [showStats, setShowStats] = useState(false);
+  const [showGuide, setShowGuide] = useState(false);
 
   // Initialize Tag Stats
   useEffect(() => {
@@ -505,15 +507,26 @@ const App: React.FC = () => {
               />
               <label htmlFor="testMode" className="text-sm text-gray-400">Test Mode (Skip Validation & Use 'total')</label>
             </div>
-            <button 
-              onClick={startGame}
-              disabled={!player.handle || isLoading}
-              className="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 rounded transition-all disabled:opacity-50 mt-4"
-            >
-              {isLoading ? 'Loading User...' : 'Enter Dungeon'}
-            </button>
+            
+            <div className="flex gap-2 mt-4">
+              <button 
+                onClick={startGame}
+                disabled={!player.handle || isLoading}
+                className="flex-1 bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 rounded transition-all disabled:opacity-50"
+              >
+                {isLoading ? 'Loading User...' : 'Enter Dungeon'}
+              </button>
+              <button 
+                onClick={() => setShowGuide(true)}
+                className="px-4 bg-gray-800 hover:bg-gray-700 text-gray-300 rounded border border-gray-700 transition-colors"
+                title="How to Play"
+              >
+                <BookOpen size={20} />
+              </button>
+            </div>
           </div>
         </div>
+        <GameGuide isOpen={showGuide} onClose={() => setShowGuide(false)} />
       </div>
     );
   }
@@ -594,12 +607,20 @@ const App: React.FC = () => {
            </div>
         </div>
 
-        <button 
-          onClick={() => setShowStats(!showStats)}
-          className="flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors"
-        >
-          <BarChart2 size={16} /> View Tag Stats
-        </button>
+        <div className="flex flex-col gap-2">
+            <button 
+            onClick={() => setShowStats(!showStats)}
+            className="flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors"
+            >
+            <BarChart2 size={16} /> View Tag Stats
+            </button>
+            <button 
+            onClick={() => setShowGuide(true)}
+            className="flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors"
+            >
+            <BookOpen size={16} /> Game Guide
+            </button>
+        </div>
       </div>
 
       {/* Main Game Area */}
@@ -754,6 +775,9 @@ const App: React.FC = () => {
           </div>
         </div>
       )}
+
+      {/* Render Guide Modal */}
+      <GameGuide isOpen={showGuide} onClose={() => setShowGuide(false)} />
 
     </div>
   );
