@@ -1,0 +1,5 @@
+{
+  "name": "P-rogue-ramming",
+  "description": "A roguelike competitive programming practice game using solved.ac and Gemini API.",
+  "requestFramePermissions": []
+}
